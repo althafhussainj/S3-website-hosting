@@ -12,8 +12,8 @@ resource "aws_route_table" "rtb" {
 }
 
 resource "aws_route_table_association" "a" {
-  route_table_id = aws_route_table.rtb.id
   subnet_id = aws_subnet.public[count.index].id 
+  route_table_id = aws_route_table.rtb.id
   count = 2
 }
 
@@ -23,7 +23,8 @@ resource "aws_default_route_table" "dfltrtb" {
   route {
     cidr_block = "0.0.0.0/0"
 #    gateway_id = aws_internet_gateway.gw
-    gateway_id = aws_internet_gateway.gw.id
+#   gateway_id = aws_internet_gateway.gw.id
+    gateway_id = aws_nat_gateway.natgw.id
   }
 
   tags = {
