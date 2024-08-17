@@ -22,7 +22,8 @@ resource "aws_default_route_table" "dfltrtb" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.natgw.id
+#    gateway_id = aws_internet_gateway.gw
+    gateway_id = aws_internet_gateway.gw.id
   }
 
   tags = {
