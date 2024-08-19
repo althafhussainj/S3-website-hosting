@@ -2,7 +2,8 @@ resource "aws_subnet" "public" {
   vpc_id     = aws_vpc.main.id
   cidr_block = var.cidr[count.index]
   availability_zone = var.az[count.index]
-  count = 2
+  #count = 2
+   count = length(var.subnet_ids)
 
   tags = {
     Name = "public-sub"
@@ -27,6 +28,6 @@ data "aws_subnets" "sid" {
 
   tags = {
     Tier = "Public"
-  }
+  }  
 }
 
